@@ -1,0 +1,24 @@
+<div id="content" class="col-lg-10 offset-lg-1">
+
+<header id="header" class="col-lg-12" [style.background]="header_color">
+  <h1>{{title}}</h1>
+</header>
+
+<nav id="nav" class="col-lg-12">
+  <ul>
+    <li><a [routerLink]="['/home']" [routerLinkActive]="['activado']">Home</a></li>
+    <li><a [routerLink]="['/productos']" [routerLinkActive]="['activado']">Productos</a></li>
+    <li><a [routerLink]="['/nuevo-producto']" [routerLinkActive]="['activado']">Crear productos</a></li>
+    <div style="clear: both;"></div>
+  </ul>
+</nav>
+
+<section id="main" class="col-lg-12">
+  <!-- Componente acutal -->
+  <router-outlet></router-outlet>
+</section>
+
+<footer id="footer" class="col-lg-12">
+  <p>Curso de Angular</p>
+</footer>
+</div> 

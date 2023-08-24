@@ -1,0 +1,32 @@
+<h3>{{titulo}}</h3>
+<hr>
+
+<form #formProducto="ngForm" (ngSubmit)="onSubmit()" class="col-lg-1" id="formproducto">
+
+  <label for="nombre">Nombre:</label>
+  <input type="text" name="nombre" [(ngModel)]="producto.nombre" required #nombre="ngModel" class="form-control">
+  <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-warning">
+    <div *ngIf="nombre.errors?.['required']">El nombre es obligatorio</div>
+  </div>
+
+  <label for="descripcion">Descripcion:</label>
+  <textarea type="text" name="descripcion" [(ngModel)]="producto.descripcion" required #descripcion="ngModel" class="form-control"></textarea>
+  <div *ngIf="descripcion.invalid && descripcion.touched" class="alert alert-warning">
+    <div *ngIf="descripcion.errors?.['required']">La descripcion es obligatorio</div>
+  </div>
+
+  <label for="precio">Precio:</label>
+  <input type="text" name="precio" [(ngModel)]="producto.precio" required pattern="[0-9]+" #precio="ngModel" class="form-control">
+  <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-warning">
+    <div *ngIf="precio.errors?.['required']">Debe ingresar un precio</div>
+    <div *ngIf="precio.errors?.['pattern']">Ingrese solo números</div>
+  </div>
+
+	<label>Imagen: </label>
+	<input type="file" class="form-control" [(ngModel)]="producto.imagen" (change)="fileChangeEvent($event)">
+  <div *ngIf="is_edit">
+    <img src="http://localhost/curso/uploads/{{producto.imagen}}" width="60px">
+  </div>
+	<br>
+	<input type="submit" value="{{titulo}}" [disabled]="!formProducto.form.valid" class="btn btn-sm btn-outline-success">
+</form>
